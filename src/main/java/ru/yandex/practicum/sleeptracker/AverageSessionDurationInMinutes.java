@@ -9,16 +9,11 @@ public class AverageSessionDurationInMinutes implements Function<List<SleepingSe
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
         if (sessions.isEmpty()) {
-            return new SleepAnalysisResult(
-                    "Средняя продолжительность сессии сна (в минутах): ", "Нет данных");
+            return new SleepAnalysisResult("Средняя продолжительность сессии сна (в минутах): ", "Нет данных");
         }
 
-        Duration totalDuration = sessions
-                .stream()
-                .map(session -> Duration.between(session.getStartSleep(), session.getEndSleep()))
-                .reduce(Duration.ZERO, Duration::plus);
+        Duration totalDuration = sessions.stream().map(session -> Duration.between(session.getStartSleep(), session.getEndSleep())).reduce(Duration.ZERO, Duration::plus);
 
-        return new SleepAnalysisResult("Средняя продолжительность сессии (в минутах): "
-                , totalDuration.toMinutes() / sessions.size());
+        return new SleepAnalysisResult("Средняя продолжительность сессии (в минутах): ", totalDuration.toMinutes() / sessions.size());
     }
 }
