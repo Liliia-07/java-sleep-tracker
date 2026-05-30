@@ -21,7 +21,7 @@ public class DeterminingUsersChronotype implements Function<List<SleepingSession
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
         if (sessions.isEmpty()) {
             return new SleepAnalysisResult(
-                    "Хронотип пользователя:  ","Нет данных");
+                    "Хронотип пользователя:  ", "Нет данных");
         }
 
         Map<Chronotype, Long> chronotypeCounts = sessions.stream()
@@ -34,7 +34,7 @@ public class DeterminingUsersChronotype implements Function<List<SleepingSession
 
         Chronotype userChronotype = determineUserChronotype(chronotypeCounts);
 
-        return new SleepAnalysisResult( "Хронотип пользователя: ", Chronotype.getName(userChronotype));
+        return new SleepAnalysisResult("Хронотип пользователя: ", Chronotype.getName(userChronotype));
     }
 
     private boolean isNightSession(SleepingSession session) {
